@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Updates an existing document in collection school
+
+db.school.update(
+    {name: "Holberton school"},
+    {"$set": {address: "972 Mission street"}},
+    {multi: true}
+);
