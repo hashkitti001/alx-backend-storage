@@ -1,0 +1,5 @@
+#!/bin/bash
+# Lists all documents with name attr as holberton school
+
+db.school.find({name: "Holberton school"}).forEach(printjson)
+
