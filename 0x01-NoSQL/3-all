@@ -1,0 +1,5 @@
+#!/bin/bash
+# Lists all documents in collection school
+
+
+db.find({})
