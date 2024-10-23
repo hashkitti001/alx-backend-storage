@@ -1,3 +1,3 @@
 #!/bin/bash
-# Lists all databases on a MongoDB server
+// Lists all databases on a MongoDB server
 show dbs

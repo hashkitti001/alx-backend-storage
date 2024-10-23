@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Updates an existing document in collection school
+// Updates an existing document in collection school
 
 db.school.update(
     {name: "Holberton school"},
