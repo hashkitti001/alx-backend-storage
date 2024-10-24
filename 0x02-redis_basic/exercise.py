@@ -15,8 +15,10 @@ def count_calls(method: Callable) -> Callable:
         return method(self, *args, **kwargs)
     return invoker
 
+
 class Cache:
-    '''A class to represent an object for storing data in a Redis caching layer'''
+    '''A class to represent an object for storing data
+in a Redis caching layer'''
 
     def __init__(self) -> None:
         '''Initializes an instance of the Cache class'''
@@ -35,14 +37,14 @@ class Cache:
     ) -> Union[str, bytes, int, float]:
         '''Retrieves a value from a Redis caching layer'''
         gotten = self._redis.get(key)
-        # Keeps original Redis.get behavior by returning 
+        # Keeps original Redis.get behavior by returning
         # affected data
         return fn(gotten) if fn is not None else gotten
-    
+
     def get_str(self, key: Union[str, bytes, int, float]):
         '''Returns the string converted value from the Redis storage'''
         return self.get(key, lambda x: x.decode('utf-8'))
-    
+
     def get_int(self, key: Union[str, bytes, int, float]):
         '''Returns the int representation of a value stored in Redis store'''
         return self.get(key, lambda x: int(x))
