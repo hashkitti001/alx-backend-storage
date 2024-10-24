@@ -1,4 +1,4 @@
-#!/bin/bash
+
 // Deletes all documents with name="Holberton school" in school collection
 
 db.school.deleteMany (

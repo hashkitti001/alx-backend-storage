@@ -1,8 +1,19 @@
 #!/usr/bin/env python3
-from typing import List, Union, Callable
+from typing import Any, Union, Callable
 import redis
 from uuid import uuid4
+from functools import wraps
 
+
+def count_calls(method: Callable) -> Callable:
+    '''Tracks the number of calls made to a method in the Cache class'''
+    @wraps(method)
+    def invoker(self, *args, **kwargs) -> Any:
+        '''Invokes the given method after incrementing its call counter'''
+        if isinstance(self._Redis, redis.Redis):
+            self._redis.incr(method.__qualname__)
+        return method(self, *args, **kwargs)
+    return invoker
 
 class Cache:
     '''A class to represent an object for storing data in a Redis caching layer'''
@@ -35,5 +46,3 @@ class Cache:
     def get_int(self, key: Union[str, bytes, int, float]):
         '''Returns the int representation of a value stored in Redis store'''
         return self.get(key, lambda x: int(x))
-    
-    
